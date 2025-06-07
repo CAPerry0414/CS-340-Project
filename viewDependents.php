@@ -27,7 +27,7 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
         });
-    </script>
+    </script> 
 </head>
 <body>
     <div class="wrapper">

@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($Bdate)){
         $Bdate_err = "Please enter birthdate.";     
     }	
-
+ 
 	// Validate Department
     $Dno = trim($_POST["Dno"]);
     if(empty($Dno)){

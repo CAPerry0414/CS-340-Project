@@ -51,7 +51,10 @@
 					<li> DELETE users and watchlists. </li>
 				</ol>
 		       <h2 class="pull-left">User Info</h2>
-                        <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
+                        <a href="deleteEmployee.php" class="btn btn-success pull-right">Add Friend</a>
+                        <a href="createEmployee.php" class="btn btn-success pull-right">Watchlist</a>
+                        <a href="createEmployee.php" class="btn btn-success pull-right">Theatres</a>
+                        <a href="createEmployee.php" class="btn btn-success pull-right">Home</a>
                     </div>
                     <?php
                     // Include config file
