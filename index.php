@@ -1,150 +1,68 @@
 <?php
-	session_start();
-	//$currentpage="View Employees"; 
+// We need to use sessions, so you should always initialize sessions using the below function
+session_start();
+// If the user is logged in, redirect to the home page
+if (isset($_SESSION['account_loggedin'])) {
+    header('Location: home.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title Review</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1">
+        <title>Login</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
-	<style type="text/css">
-        .wrapper{
-            width: 70%;
-            margin:0 auto;
-        }
-        table tr td:last-child a{
-            margin-right: 15px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-		 $('.selectpicker').selectpicker();
-    </script>
-</head>
-<body>
-    <?php
-        // Include config file
-        require_once "config.php";
-//		include "header.php";
-	?>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-		    <div class="page-header clearfix">
-		     <h2> Review Titles and Collaborate with Others </h2> 
-                       <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new users, titles and watchlists </li>
-					<li> RETRIEVE friends, watchlists, and reviews for each user, theaters showing movies, and titles.</li>
-                                        <li> UPDATE friends, reviews, and watchlists</li>
-					<li> DELETE users and watchlists. </li>
-				</ol>
-		       <h2 class="pull-left">User Info</h2>
-                        <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
-                    </div>
-                    <?php
-                    // Include config file
-                    require_once "config.php";
-                    
-                    // Attempt select all employee query execution
-					// *****
-					// Insert your function for Salary Level
-					/*
-						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
-							FROM EMPLOYEE";
-					*/
-                    $sql = "SELECT user_ID as ID, username, password
-							FROM User";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
-                            echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th width=8%>ID</th>";
-                                        echo "<th width=10%>Username</th>";
-                                        echo "<th width=10%>Password</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['ID'] . "</td>";
-                                        echo "<td>" . $row['username'] . "</td>";
-                                        echo "<td>" . $row['password'] . "</td>";
-                                        // echo "<td>";
-                                        //     echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                        //     echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        //     echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-										// 	echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
-                                        // echo "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
-                            echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
-                        } else{
-                            echo "<p class='lead'><em>No records were found.</em></p>";
-                        }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
-                    }
-					echo "<br> <h2> Titles </h2> <br>";
-					
-                    // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-					
-                    $sql2 = "SELECT * FROM Title";
-                    if($result2 = mysqli_query($link, $sql2)){
-                        if(mysqli_num_rows($result2) > 0){
-							echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th width=10%>ID</th>";
-                                        echo "<th width = 15%>Name</th>";
-                                        echo "<th width = 10%>Release Date</th>";
-                                        echo "<th width = 10%>Genre</th>";
-                                        echo "<th width = 45%>Description</th>";
-                                        echo "<th width = 10%>Media Type</th>";
-	
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = mysqli_fetch_array($result2)){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['title_ID'] . "</td>";
-                                        echo "<td>" . $row['title_name'] . "</td>";
-                                        echo "<td>" . $row['release_date'] . "</td>";
-                                        echo "<td>" . $row['genre'] . "</td>";
-                                        echo "<td>" . $row['description'] . "</td>";
-                                        echo "<td>" . $row['media_type'] . "</td>";
-               
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
-                            echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result2);
-                        } else{
-                            echo "<p class='lead'><em>No records were found for Dept Stats.</em></p>";
-                        }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
-                    }
-					
-                    // Close connection
-                    mysqli_close($link);
-                    ?>
+        <style type="text/css">
+            .wrapper{
+                width: 70%;
+                margin:0 auto;
+            }
+            table tr td:last-child a{
+                margin-right: 15px;
+            }
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+            $('.selectpicker').selectpicker();
+        </script>
+    </head>
+    <body>
+        <div class="login">
 
-</body>
+            <h1>Member Login</h1>
+
+            <form action="login.php" method="post" class="form login-form">
+
+                <label class="form-label" for="username">Username</label>
+                <div class="form-group">
+                    <svg class="form-icon-left" width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    <input class="form-input" type="text" name="username" placeholder="Username" id="username" required>
+                </div>
+
+                <label class="form-label" for="password">Password</label>
+                <div class="form-group mar-bot-5">
+                    <svg class="form-icon-left" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
+                    <input class="form-input" type="password" name="password" placeholder="Password" id="password" required>
+                </div>
+
+                <button class="btn blue" type="submit">Login</button>
+
+                <p class="register-link">Don't have an account? <a href="register.php" class="form-link">Register</a></p>
+
+            </form>
+
+        </div>
+    </body>
 </html>
