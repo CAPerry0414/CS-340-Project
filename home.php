@@ -1,6 +1,10 @@
 <?php
 	session_start();
-	//$currentpage="View Employees"; 
+	//$currentpage="View Employees";
+    if (!isset($_SESSION['account_loggedin'])) {
+        header('Location: index.php');
+        exit;
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +56,7 @@
 				</ol>
 		       <h2 class="pull-left">User Info</h2>
                         <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
+                        <a href="logout.php" class="btn btn-success pull-right">Logout</a>
                     </div>
                     <?php
                     // Include config file

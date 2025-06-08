@@ -52,6 +52,7 @@ if ($stmt = $link->prepare('SELECT user_ID, password FROM User WHERE username = 
             $_SESSION['account_id'] = $id;
             // Output success message
             echo 'Welcome back, ' . htmlspecialchars($_SESSION['account_name'], ENT_QUOTES) . '!';
+            header("location: index.php");
             exit;
         } else {
             // Incorrect password

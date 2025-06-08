@@ -59,7 +59,7 @@ if (isset($_SESSION['account_loggedin'])) {
 
                 <button class="btn blue" type="submit">Login</button>
 
-                <p class="register-link">Don't have an account? <a href="register.php" class="form-link">Register</a></p>
+                <p class="register-link">Don't have an account? <a href="createUser.php" class="form-link">Register</a></p>
 
             </form>
 
