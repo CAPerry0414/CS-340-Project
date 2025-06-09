@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once('config.php');
 session_start();
 
@@ -60,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <h1>Add a Friend</h1>
     <!-- <h2>Delete a Friend</h2>
     <a href="addFriend.php" class="btn btn-success pull-right">Friends</a> -->
-    <form method="POST" action="addFriend.php">
+    <form method="POST" action="addFriends.php">
         <label for="friend_username">Friend's Username:</label>
         <input type="text" name="friend_username" required>
         <button type="submit">Add Friend</button>
