@@ -109,7 +109,7 @@
 ?>	
 
 	<form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-		<div class="form-group <?php echo (!empty($Ssn_err)) ? 'has-error' : ''; ?>">
+		<div class="form-group <?php echo (!empty($friend_ID_err)) ? 'has-error' : ''; ?>">
             <label>Friend_ID</label>
 			<!-- <select name="friend_ID" class="form-control"> -->
 			<?php

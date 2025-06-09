@@ -54,7 +54,7 @@ if(isset($_SESSION["user_ID"]) ){
 	
 	
     // Prepare a select statement
-    $sql = "SELECT U.username 
+    $sql = "SELECT U.username, U.user_ID 
             FROM User U LEFT JOIN Befriends B ON U.user_ID = B.friend_ID
             WHERE B.user_ID = ? ";
 
@@ -92,7 +92,7 @@ if(isset($_SESSION["user_ID"]) ){
                         // echo "<td>" . $row['Relationship'] . "</td>";
 						echo "<td>";
 						//   echo "<a href='updateDependent.php?Dname=". $row['Dependent_name'] ."' title='Update Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                          echo "<a href='deleteFriend.php?username=". $row['username'] ."' title='Delete Friend' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                          echo "<a href='deleteFriend2.php?fUser_ID=". $row['user_ID'] ."' title='Delete Friend' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                         echo "</td>";
 						echo "</tr>";
                     }

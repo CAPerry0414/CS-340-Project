@@ -58,7 +58,6 @@
                         <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
                         <a href="logout.php" class="btn btn-success pull-right">Logout</a>
                         <a href="viewTheater.php" class="btn btn-success pull-right">View Theaters</a>
-                        <a href="addFriend.php" class="btn btn-success pull-right">Friends</a>
                         <?php
                         echo '<a href="viewFriends.php?user_ID=' . $_SESSION['account_id'] . '&username=' . $_SESSION['account_name'] . '" class="btn btn-success pull-right">Friends</a>';
                         ?>
