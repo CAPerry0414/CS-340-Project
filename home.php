@@ -54,8 +54,7 @@
                                         <li> UPDATE friends, reviews, and watchlists</li>
 					<li> DELETE users and watchlists. </li>
 				</ol>
-		       <h2 class="pull-left">User Info</h2>
-                        <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
+		       <h2 class="pull-left">Registered Titles</h2>
                         <a href="logout.php" class="btn btn-success pull-right">Logout</a>
                         <a href="viewTheater.php" class="btn btn-success pull-right">View Theaters</a>
                         <?php
@@ -65,51 +64,7 @@
                     <?php
                     // Include config file
                     require_once "config.php";
-                    
-                    // Attempt select all employee query execution
-					// *****
-					// Insert your function for Salary Level
-					/*
-						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
-							FROM EMPLOYEE";
-					*/
-                    $sql = "SELECT user_ID as ID, username, password
-							FROM User";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
-                            echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th width=8%>ID</th>";
-                                        echo "<th width=10%>Username</th>";
-                                        echo "<th width=10%>Password</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['ID'] . "</td>";
-                                        echo "<td>" . $row['username'] . "</td>";
-                                        echo "<td>" . $row['password'] . "</td>";
-                                        // echo "<td>";
-                                        //     echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                        //     echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        //     echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-										// 	echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
-                                        // echo "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
-                            echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
-                        } else{
-                            echo "<p class='lead'><em>No records were found.</em></p>";
-                        }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
-                    }
-					echo "<br> <h2> Titles </h2> <br>";
+                                
 					
                     // Select Department Stats
 					// You will need to Create a DEPT_STATS table
