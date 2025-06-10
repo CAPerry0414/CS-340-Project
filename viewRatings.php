@@ -10,7 +10,6 @@ if (!isset($_SESSION["account_id"]) || !isset($_SESSION["account_name"])) {
 
 $user_ID = $_SESSION["account_id"];
 $username = $_SESSION["account_name"];
-
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +33,7 @@ $username = $_SESSION["account_name"];
         }
     </style>
     <script>
-        $(document).ready(function () 
-        {
+        $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
@@ -50,53 +48,49 @@ $username = $_SESSION["account_name"];
                     <a href="createRatings.php" class="btn btn-success pull-right">Add Rating</a>
                 </div>
                 <?php
-                // Connect using MySQLi (to match your template style)
+                // Connect using MySQLi
                 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-                if (!$conn) 
-                {
+                if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
                 $sql = "
-                    SELECT t.title_name, r.rating
+                    SELECT t.title_ID, t.title_name, r.rating
                     FROM Rates r
                     JOIN Title t ON r.title_ID = t.title_ID
                     WHERE r.user_ID = ?
                 ";
 
-                if ($stmt = mysqli_prepare($conn, $sql)) 
-                {
+                if ($stmt = mysqli_prepare($conn, $sql)) {
                     mysqli_stmt_bind_param($stmt, "i", $user_ID);
-                    if (mysqli_stmt_execute($stmt)) 
-                    {
+                    if (mysqli_stmt_execute($stmt)) {
                         $result = mysqli_stmt_get_result($stmt);
 
-                        if (mysqli_num_rows($result) > 0) 
-                        {
+                        if (mysqli_num_rows($result) > 0) {
                             echo "<table class='table table-bordered table-striped'>";
                             echo "<thead>";
-                            echo "<tr><th>Title</th><th>Rating</th></tr>";
+                            echo "<tr><th>Title</th><th>Rating</th><th>Actions</th></tr>";
                             echo "</thead><tbody>";
 
-                            while ($row = mysqli_fetch_assoc($result)) 
-                            {
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['title_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['rating']) . "</td>";
+                                echo "<td>";
+                                echo "<a href='deleteRating.php?title_ID=" . $row['title_ID'] . "' title='Delete Rating' data-toggle='tooltip'>";
+                                echo "<span class='glyphicon glyphicon-trash'></span>";
+                                echo "</a>";
+                                echo "</td>";
                                 echo "</tr>";
                             }
 
                             echo "</tbody></table>";
-                        } 
-                        else 
-                        {
+                        } else {
                             echo "<p class='lead'><em>No ratings found.</em></p>";
                         }
 
                         mysqli_free_result($result);
-                    } 
-                    else 
-                    {
+                    } else {
                         echo "<p class='text-danger'>Error executing query.</p>";
                     }
 
