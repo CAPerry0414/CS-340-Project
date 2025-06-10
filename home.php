@@ -59,6 +59,7 @@
                         <a href="viewTheater.php" class="btn btn-success pull-right">View Theaters</a>
                         <?php
                         echo '<a href="viewFriends.php?user_ID=' . $_SESSION['account_id'] . '&username=' . $_SESSION['account_name'] . '" class="btn btn-success pull-right">Friends</a>';
+                        echo '<a href="viewWatchlist.php?user_ID=' . $_SESSION['account_id'] . '&username=' . $_SESSION['account_name'] . '" class="btn btn-success pull-right">Your Watchlist</a>';
                         ?>
                     </div>
                     <?php
