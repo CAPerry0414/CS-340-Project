@@ -39,7 +39,8 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Your Watchlist</h2>
-						<a href="createDependents.php" class="btn btn-success pull-right">Add Title</a>
+                        <a href="addToWatchlist.php" class="btn btn-success pull-right">Add Title</a>
+						
                     </div>
 <?php
 
@@ -55,7 +56,7 @@ if(isset($_SESSION["account_id"]) ){
 	
 	
     // Prepare a select statement
-    $sql = "SELECT T.title_name, T.title_ID 
+    $sql = "SELECT T.title_name, T.title_ID, W.watch_list_ID 
             FROM WatchList W 
             LEFT JOIN Lists L ON W.watch_list_ID = L.watch_list_ID
             LEFT JOIN Title T ON L.title_ID = T.title_ID
@@ -95,7 +96,7 @@ if(isset($_SESSION["account_id"]) ){
                         // echo "<td>" . $row['Relationship'] . "</td>";
 						echo "<td>";
 						//   echo "<a href='updateDependent.php?Dname=". $row['Dependent_name'] ."' title='Update Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                          echo "<a href='deleteTitle.php?TID=". $row['title_ID'] ."' title='Delete Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                          echo "<a href='deleteFromWatchlist.php?TID=". $row['title_ID'] ."' title='Delete Title' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                         echo "</td>";
 						echo "</tr>";
                     }
