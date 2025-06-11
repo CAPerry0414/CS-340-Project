@@ -72,18 +72,21 @@ $username = $_SESSION["account_name"];
                             echo "<tr><th>Title</th><th>Rating</th><th>Actions</th></tr>";
                             echo "</thead><tbody>";
 
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($row = mysqli_fetch_assoc($result)) 
+                            {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['title_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['rating']) . "</td>";
                                 echo "<td>";
+                                echo "<a href='updateRating.php?title_ID=" . $row['title_ID'] . "' title='Update Rating' data-toggle='tooltip'>";
+                                echo "<span class='glyphicon glyphicon-pencil'></span>";
+                                echo "</a> ";
                                 echo "<a href='deleteRating.php?title_ID=" . $row['title_ID'] . "' title='Delete Rating' data-toggle='tooltip'>";
                                 echo "<span class='glyphicon glyphicon-trash'></span>";
                                 echo "</a>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-
                             echo "</tbody></table>";
                         } else {
                             echo "<p class='lead'><em>No ratings found.</em></p>";

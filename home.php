@@ -47,12 +47,12 @@
             <div class="row">
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
-		     <h2> Review Titles and Collaborate with Others </h2> 
+		     <h2> Rotten Potatoes</h2> 
                        <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new users, titles and watchlists </li>
-					<li> RETRIEVE friends, watchlists, and reviews for each user, theaters showing movies, and titles.</li>
-                                        <li> UPDATE friends, reviews, and watchlists</li>
-					<li> DELETE users and watchlists. </li>
+				<ol> 	<li> CREATE new Users, Ratings, Friends and Watchlists </li>
+					<li> RETRIEVE Friends, Watchlists, Ratings for each user, Theaters showing movies, and Titles.</li>
+                                        <li> UPDATE Ratings</li>
+					<li> DELETE Users, Watchlists, Friends, and Ratings. </li>
 				</ol>
 		       <h2 class="pull-left">Registered Titles</h2>
                         <a href="logout.php" class="btn btn-success pull-right">Logout</a>

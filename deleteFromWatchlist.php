@@ -32,7 +32,6 @@
                 }
                 mysqli_stmt_close($stmt_watchlist);
             }
-
 			
 			// Prepare a delete statement
 			$sql = "DELETE FROM Lists WHERE watch_list_ID = ? AND title_ID = ?";
@@ -70,7 +69,7 @@
 			exit();
 		}
 	}
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
